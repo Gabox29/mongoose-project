@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// Comment schema
 const commentSchema = new mongoose.Schema(
   {
     username: { type: String, required: true },
@@ -9,7 +8,6 @@ const commentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Post schema
 const postSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
@@ -20,7 +18,6 @@ const postSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Create the Post model
 const Post = mongoose.model("Post", postSchema);
 
 module.exports = Post;

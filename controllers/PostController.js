@@ -4,10 +4,19 @@ const PostController = {
   async create(req, res) {
     try {
       const post = await Post.create(req.body);
-      res.status(201).send(post);
+      res.status(201).send({ message: "Post created successfully", post });
     } catch (error) {
       console.error(error);
       res.status(500).send({ message: "There was a problem", error });
+    }
+  },
+  async update(req, res) {
+    try {
+      const post = await Post.findByIdAndUpdate(req.params._id, req.body, { new: true });
+      res.send({ message: "Post updated successfully", post });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: "Something is wrong", error });
     }
   },
 };
