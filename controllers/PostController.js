@@ -37,18 +37,27 @@ const PostController = {
       res.status(500).send({ message: "Something went wrong", error });
     }
   },
-  async getPostByTitle(req, res) {
+  async getByTitle(req, res) {
     try {
-      if (req.params.title.length>20) {
-        return res.status(400).send("Search query too long")
+      if (req.params.title.length > 20) {
+        return res.status(400).send("Search query too long");
       }
       const title = new RegExp(req.params.title, "i");
-      const post = await Post.findOne({title});
+      const post = await Post.findOne({ title });
       res.status(200).send(post);
     } catch (error) {
       console.log(error);
       res.status(500).send({ message: "Something went wrong", error });
     }
   },
-}
+  async getById(req, res) {
+    try {
+      const post = await Post.findById(req.params._id);
+      res.status(200).send(post);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: "Something went wrong", error });
+    }
+  },
+};
 module.exports = PostController;
