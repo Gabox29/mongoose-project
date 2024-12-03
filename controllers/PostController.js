@@ -28,5 +28,14 @@ const PostController = {
       res.status(500).send({ message: "Something went wrong", error });
     }
   },
+  async getAll(req, res) {
+    try {
+      const posts = await Post.find();
+      res.status(200).send(posts);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: "Something went wrong", error });
+    }
+  },
 };
 module.exports = PostController;
