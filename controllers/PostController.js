@@ -7,7 +7,7 @@ const PostController = {
       res.status(201).send({ message: "Post created successfully", post });
     } catch (error) {
       console.error(error);
-      res.status(500).send({ message: "There was a problem", error });
+      res.status(500).send({ message: "Something went wrong", error });
     }
   },
   async update(req, res) {
@@ -16,7 +16,16 @@ const PostController = {
       res.send({ message: "Post updated successfully", post });
     } catch (error) {
       console.error(error);
-      res.status(500).send({ message: "Something is wrong", error });
+      res.status(500).send({ message: "Something went wrong", error });
+    }
+  },
+  async delete(req, res) {
+    try {
+      const post = await Post.findByIdAndDelete(req.params._id);
+      res.send({ message: "Post deleted", post });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: "Something went wrong", error });
     }
   },
 };
