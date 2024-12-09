@@ -32,6 +32,7 @@ const PostController = {
     try {
       const { page = 1, limit = 10 } = req.query;
       const posts = await Post.find()
+        .populate("userId",["name","email"])
         .limit(limit)
         .skip((page - 1) * limit);
       res.status(200).send(posts);
