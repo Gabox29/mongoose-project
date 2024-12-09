@@ -37,6 +37,15 @@ const UserController = {
       res.status(500).send({ message: "There was an error disconnecting", error });
     }
   },
+  async getInfo(req, res) {
+    try {
+      const user = await User.findById(req.user._id).populate("postIds", ["title", "body", "userId"]);
+      res.status(200).send(user);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: "There was an error getting the user information", error });
+    }
+  },
 };
 
 module.exports = UserController;
