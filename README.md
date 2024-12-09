@@ -68,7 +68,7 @@ For API development, we will use MongoDB with Mongoose and Express. The project 
 4. Run the application with `npm start`.
 5. Access the API at the specified endpoints.
 
-## Autoria:
+## Authors
 Gabriel & Catalina
 
 ## Licenses
