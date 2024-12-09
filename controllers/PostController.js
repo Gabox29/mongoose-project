@@ -30,7 +30,10 @@ const PostController = {
   },
   async getAll(req, res) {
     try {
-      const posts = await Post.find();
+      const { page, limit } = req.query;
+      const posts = await Post.find()
+        .limit(limit)
+        .skip((page - 1) * limit);
       res.status(200).send(posts);
     } catch (error) {
       console.error(error);
