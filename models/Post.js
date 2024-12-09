@@ -26,6 +26,7 @@ const postSchema = new mongoose.Schema(
         body: { type: String, required: true },
       },
     ],
+    likes: [{ type: ObjectId }],
   },
   { timestamps: true }
 );

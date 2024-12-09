@@ -9,6 +9,8 @@ router.delete("/delete/id/:_id", authentication, isAuthor, PostController.delete
 router.get("/getAll", PostController.getAll);
 router.get("/getByTitle/:title", PostController.getByTitle);
 router.get("/getById/:_id", PostController.getById);
-router.post("/insertComment", authentication, PostController.insertComment);
+router.post("/insertComment/:_id", authentication, PostController.insertComment);
+router.post("/like/:_id", authentication, PostController.like);
+router.post("/unlike/:_id", authentication, PostController.unlike);
 
 module.exports = router;
