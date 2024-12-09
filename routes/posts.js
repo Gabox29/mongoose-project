@@ -9,5 +9,6 @@ router.delete("/delete/id/:_id", authentication, isAuthor, PostController.delete
 router.get("/getAll", PostController.getAll);
 router.get("/getByTitle/:title", PostController.getByTitle);
 router.get("/getById/:_id", PostController.getById);
+router.post("/insertComment", authentication, PostController.insertComment);
 
 module.exports = router;
