@@ -4,12 +4,12 @@ const jwt_secret = process.env.JWT_SECRET;
 const jwt = require("jsonwebtoken");
 
 const UserController = {
-  async register(req, res) {
+  async register(req, res, next) {
     try {
       const user = await User.create(req.body);
       res.status(201).send({ message: "User created successfully", user });
     } catch (error) {
-      console.error(error);
+      next(error);
     }
   },
   async login(req, res) {

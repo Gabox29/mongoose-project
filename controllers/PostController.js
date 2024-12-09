@@ -1,13 +1,12 @@
 const Post = require("../models/Post");
 
 const PostController = {
-  async create(req, res) {
+  async create(req, res, next) {
     try {
       const post = await Post.create(req.body);
       res.status(201).send({ message: "Post created successfully", post });
     } catch (error) {
-      console.error(error);
-      res.status(500).send({ message: "Something went wrong", error });
+      next(error);
     }
   },
   async update(req, res) {
@@ -32,7 +31,7 @@ const PostController = {
     try {
       const { page = 1, limit = 10 } = req.query;
       const posts = await Post.find()
-        .populate("userId",["name","email"])
+        .populate("userId", ["name", "email"])
         .limit(limit)
         .skip((page - 1) * limit);
       res.status(200).send(posts);
